@@ -1,3 +1,13 @@
+if('ServiceWorker' in navigator){
+  navigator.serviceWorker.register('./sw.js', {scope:'./'})
+  .then (function(registration){
+    console.log("Service Worker Registered");
+  })
+  .catch(function(err){
+    console.log("Service Worker failed to register", err);
+  })
+  }
+
 let restaurant;
 var newMap;
 
@@ -22,7 +32,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-        mapboxToken: '<your MAPBOX API KEY HERE>',
+        mapboxToken: 'pk.eyJ1IjoiYWR2ZW50dXJlbm93IiwiYSI6ImNqa291MzRhYzE2aGEzeG1udXpqY3c2M3UifQ.k-_GPZ9TFNLGG0PM0FowQQ',
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -35,7 +45,7 @@ initMap = () => {
   });
 }  
  
-/* window.initMap = () => {
+/*window.initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
       console.error(error);
@@ -49,7 +59,7 @@ initMap = () => {
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
     }
   });
-} */
+}*/ 
 
 /**
  * Get current restaurant from page URL.
@@ -87,9 +97,10 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
+  image.className = 'restaurant-img';
+  image.alt = 'restaurant.name';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
-
+  
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
 
@@ -193,6 +204,3 @@ getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('./js/sw/sw.js');
-}
