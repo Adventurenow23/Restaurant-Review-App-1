@@ -9,12 +9,22 @@ body,td,th,p{
 }
 body {
 	background-color: #fdfdfd;
-	margin: 0;
+  margin: 0;
+  padding:0;
   position:relative;
-  max-width: 1280px;
+  width: 100%;
+  height: 100%;
   margin-right:auto;
   margin-left:auto;
+  overflow-x: hidden;
 }
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 350px;
+}
+
 ul, li {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
@@ -48,7 +58,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   color: #aaa;
   font-size: 8pt;
   letter-spacing: 1px;
-  padding: 25px 1.5px;
+  padding: 25px 1.0px;
   text-align: center;
   text-transform: uppercase;
 }
@@ -57,7 +67,7 @@ nav {
   width: 100%;
   height: 50px;
   background-color: rgb(6, 4,105);
-  text-align:center;
+  text-align: center;
   padding-top: 1%;
 }
 nav h1 {
@@ -65,7 +75,7 @@ nav h1 {
 }
 nav h1 a {
   color: #fff;
-  font-size: 15pt;
+  font-size: 17pt;
   font-weight: 200;
   letter-spacing: 10px;
   text-transform: uppercase;
@@ -76,8 +86,8 @@ nav h1 a {
     list-style: none;
     background-color: #eee;
     font-size: 20px;
-    margin: 0;
-    width: calc(50% - 80px);
+    margin: auto;
+    width: 100%;
     display: flex;
 }
 
@@ -113,27 +123,37 @@ nav h1 a {
 
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
+  height: 10%;
   width: 100%;
   background-color:rgb(6, 4,105);
-  align-items: center;
-  padding: 15px 0;
-}
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}  
 .filter-options h2 {
   color: white;
   font-size: 1.5rem;
   font-weight: normal;
   line-height: 1;
-  margin: 0 20px;
+  margin: 10px 20px;
+  padding: 5px 5px;
 }
 .filter-options select {
   background-color: white;
   border: 1px solid #fff;
   font-family: Arial,sans-serif;
-  font-size: 14pt;
+  font-size: 1.3rem;
   height: 35px;
   letter-spacing: 0;
-  margin: 10px 70px;
-  width: 200px;
+  margin: 10px;
+  padding: 0 10px;
+  width: 220px;
+  justify-content: center;
+}
+
+.filter-selects {
+  justify-content: center;
+  margin: 0;
 }
 
 /* ====================== Restaurant Listing ====================== */
@@ -193,162 +213,30 @@ nav h1 a {
   text-transform: uppercase;
 }
 
-/* ====================== Restaurant Details ====================== */
-.inside header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
-.inside #map-container {
-  background: blue none repeat scroll 0 0;
-  height: 87%;
-  position: fixed;
-  right: 0;
-  top: 80px;
-  width: 50%;
-}
-.inside #map {
-  background-color: #ccc;
-  height: 100%;
-  width: 100%;
-}
-
-.inside #footer {
-  bottom: 0;
-  position: absolute;
-  width: 50%;
-}
-#restaurant-name {
-  color:  rgb(6, 4, 105);
-  font-family: Arial,sans-serif;
-  font-size: 20pt;
-  font-weight: 200;
-  letter-spacing: 0;
-  margin: 15px 0 30px;
-  text-transform: uppercase;
-  line-height: 1.1;
-}
-#restaurant-img {
-	width: 90%;
-}
-#restaurant-address {
-  font-size: 12pt;
-  margin: 10px 0px;
-}
-#restaurant-cuisine {
-  background-color: #333;
-  color: #ddd;
-  font-size: 12pt;
-  font-weight: 300;
-  letter-spacing: 10px;
-  margin: 0 0 20px;
-  padding: 2px 0;
-  text-align: center;
-  text-transform: uppercase;
-	width: 90%;
-}
-#restaurant-container, #reviews-container {
-  border-bottom: 1px solid #d9d9d9;
-  border-top: 1px solid #fff;
-  padding: 140px 40px 30px;
-  width: 50%;
-}
-#reviews-container {
-  padding: 30px 40px 80px;
-}
-#reviews-container h2 {
-  color: #f58500;
-  font-size: 24pt;
-  font-weight: 300;
-  letter-spacing: -1px;
-  padding-bottom: 1pt;
-}
-#reviews-list {
-  margin: 0;
-  padding: 0;
-}
-#reviews-list li {
-  background-color: #fff;
-    border: 2px solid #f3f3f3;
-  display: block;
-  list-style-type: none;
-  margin: 0 0 30px;
-  overflow: hidden;
-  padding: 0 20px 20px;
-  position: relative;
-  width: 85%;
-}
-#reviews-list li p {
-  margin: 0 0 10px;
-}
-#restaurant-hours td {
-  color: #666;
-}
 /* ====================== Media Queries ====================== */
 
-/* From gokulkkrish@github
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
-*/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+nav {
+  height: 80px;
+  }
 
-@media (min-width: 1281px) {
-  display:flex;
-  flex-direction: row;
-  width: 100vw; 
+nav h1 a {
+    font-size: 12pt;
+}   
+  }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+nav {
+  height: 70px;
+}
+  }
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+nav {
+  height: 80px;
+  }
 }
 
-/* 
-  ##Device = Laptops, Desktops
-  ##Screen = B/w 1025px to 1280px
-*/
 
-@media (min-width: 1025px) and (max-width: 1280px) {
-display:flex;
-flex-direction: row;
-width: 100vw; 
-}
-
-/* 
-  ##Device = Tablets, Ipads (portrait)
-  ##Screen = B/w 768px to 1024px
-*/
-
-@media (min-width: 768px) and (max-width: 1024px) {
-display:flex;
-flex-direction: row;
-width: 100vw;  
-}
-
-/* 
-  ##Device = Tablets, Ipads (landscape)
-  ##Screen = B/w 768px to 1024px
-*/
-
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-display:flex;
-flex-direction: row;
-width: 100vw; 
-}
-
-/* 
-  ##Device = Low Resolution Tablets, Mobiles (Landscape)
-  ##Screen = B/w 481px to 767px
-*/
-
-@media (min-width: 481px) and (max-width: 767px) {
-display:flex;
-flex-direction: row;
-width: 100vw;  
-}
-
-/* 
-  ##Device = Most of the Smartphones Mobiles (Portrait)
-  ##Screen = B/w 320px to 479px
-*/
-
-@media (min-width: 320px) and (max-width: 480px) {
-display:flex;
-flex-direction: row;
-width: 100vw;  
-}

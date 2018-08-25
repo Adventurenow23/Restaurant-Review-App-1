@@ -1,16 +1,17 @@
-if('ServiceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js', {scope:'./'})
-  .then (function(registration){
-    console.log("Service Worker Registered");
-  })
-  .catch(function(err){
-  console.log("Service Worker failed to register", err);
- })
-  }
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js')
+    .then(function (reg) {
+      // registration worked
+      console.log('Registration succeeded. Scope is ' + reg.scope);
+    }).catch(function (error) {
+      // registration failed
+      console.log('Registration failed with ' + error);
+    });
+}
 
 let restaurants,
   neighborhoods,
-  cuisines 
+  cuisines
 var newMap
 var markers = []
 
@@ -83,10 +84,10 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
  */
 initMap = () => {
   self.newMap = L.map('map', {
-        center: [40.722216, -73.987501],
-        zoom: 12,
-        scrollWheelZoom: false
-      });
+    center: [40.722216, -73.987501],
+    zoom: 12,
+    scrollWheelZoom: false
+  });
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
     mapboxToken: 'pk.eyJ1IjoiYWR2ZW50dXJlbm93IiwiYSI6ImNqa291MzRhYzE2aGEzeG1udXpqY3c2M3UifQ.k-_GPZ9TFNLGG0PM0FowQQ',
     maxZoom: 18,
@@ -171,6 +172,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = DBHelper.altTextForImages(restaurant);
   li.append(image);
 
   const name = document.createElement('h1');
@@ -201,12 +203,13 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     // Add marker to the map
     const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.newMap);
     marker.on("click", onClick);
+
     function onClick() {
       window.location.href = marker.options.url;
     }
     self.markers.push(marker);
   });
-} 
+}
 
 /*addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
@@ -217,8 +220,3 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     });
     self.markers.push(marker);
   });*/
-
-
-
-
-

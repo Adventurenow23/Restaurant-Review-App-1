@@ -1,52 +1,71 @@
 <!DOCTYPE html>
-<html>        
+<html lang = "en">        
 
 <head>
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" tabindex = "0"/>
+  <link rel = "shortcut icon" href="./favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+  
   <title>Restaurant Reviews</title>
+
 </head>
 
 <body>
-  <header tabindex = "0">
-    <nav>
-      <h1><a href="/">Restaurant Reviews</a></h1>
+  <header>
+    
+    
+    <nav aria-label = "Breadcrumb" class = "breadcrumb">
+      <h1><a href="/" aria-current="page" tabindex = "0">Restaurant Reviews</a></h1>
     </nav>
   </header>
 
-  <main id="maincontent" tabindex = "1">
+  <main id="maincontent">
+    
     <section id="map-container" aria-labelledby="map-aria-description" role = "application">
       <div id="map"></div>
     </section>
-    <label id = "map-aria-description" class="map-aria-description"><!--"Google map application"--></label>
-    <section tabindex = "2">
+    
+    <label id = "map-aria-description" class="map-aria-description"></label>
+    
+    <section tabindex = "0">
+
       <div class="filter-options">
+        
         <h2>Filter Results</h2>
+        
         <div class="filter-selects">
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-label="Select neighborhoods" tabindex = "0">
           <option value="all">All Neighborhoods</option>
         </select>
-        <label id="neighborhoods-label" class="filter-label">by neighborhoods</label>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()"> <!--aria-labelledby-->
+        
+        <label id="neighborhoods-label" class="filter-label"></label>
+        
+        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()" aria-label="Select cuisines" tabindex = "0"> 
           <option value="all">All Cuisines</option>
         </select>
-        <label id="cuisines-label" class="filter-label">by cuisines</label>
+        
+        <label id="cuisines-label" class="filter-label"></label>
         </div>
+      
       </div>
-      <ul id="restaurants-list"></ul>
+      
+      <ul id="restaurants-list" role = "group"></ul>
+    
     </section>
+  
   </main>
-  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin="" tab index = -1></script>
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-  <script type="application/javascript" charset="utf-8" src="js/sw.js"></script>
+  <script type="application/javascript" charset="utf-8" src="./sw.js"></script>
   <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=pk.eyJ1IjoiYWR2ZW50dXJlbm93IiwiYSI6ImNqa291MzRhYzE2aGEzeG1udXpqY3c2M3UifQ.k-_GPZ9TFNLGG0PM0FowQQ&libraries=places&callback=initMap"></script>-->
 
 
   
-  <footer id="footer">
+  <footer id="footer" role = "contentinfo" tabindex = "0">
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
 </body>
